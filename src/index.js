@@ -8,19 +8,27 @@ import pure from 'recompose/pure';
 
 require('./ProgressInput.css');
 
-const ProgressFieldComponent = ({ source, record = {}, className }) =>
-  (
-    <div style={{ display: 'flex' }}>
-      <div style={{
-        width: '20px',
-        height: '20px',
-        background: get(record, source),
-        marginRight: '5px',
-      }}
-      />
-      <span className={className}>{get(record, source)}</span>
+const ProgressFieldComponent = ({ source, record = {}, data }) => {
+
+  const sourceData = get(record,source);
+
+  let component = [];
+  data.forEach((d,i) => component.push(<div key={d} style={{
+    width: '15px',
+    height: '15px',
+    background:  sourceData.includes(d) ? 'green' : 'grey',
+    marginRight: '5px',
+    borderRadius: '50%'
+  }}
+  />))
+ 
+  return (<div style={{ display: 'flex' }}>
+       {component}
     </div>
-  );
+    )
+}
+
+      
 
 ProgressFieldComponent.propTypes = {
   addLabel: PropTypes.bool,
@@ -35,6 +43,7 @@ const PureTextField = pure(ProgressFieldComponent);
 
 PureTextField.defaultProps = {
   addLabel: true,
+  data:[]
 };
 
 class ProgressInputComponent extends React.Component {

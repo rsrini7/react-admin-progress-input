@@ -25,10 +25,13 @@ import {
   Datagrid
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
-import {ProgressField, ProgressInput} from '../../../src'
+import {ProgressField} from '../../../src'
 
 import ResetViewsAction from './ResetViewsAction';
 export const PostIcon = BookIcon;
+
+
+const statusData = ['arrived','initiated','completed'];
 
 const QuickFilter = translate(({ label, translate }) => (
   <Chip style={{ marginBottom: 8 }} label={translate(label)} />
@@ -55,10 +58,14 @@ const PostFilter = props => (
 
 const styles = theme => ({
   title: {
-    maxWidth: '20em',
+    maxWidth: '5em',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+  },
+  progress: {
+    maxWidth: '20em'
+    
   },
   hiddenOnSmallScreens: {
     [theme.breakpoints.down('md')]: {
@@ -105,7 +112,7 @@ const PostList = withStyles(styles)(({ classes, ...props }) => (
         <Datagrid>
           <TextField source="id" />
           <TextField source="title" cellClassName={classes.title} />
-          <ProgressField source="color" />
+          <ProgressField source="events" data={statusData} cellClassName={classes.progress}/>
           <DateField source="published_at" cellClassName={classes.publishedAt} />
           <BooleanField
             source="commentable"
@@ -113,17 +120,7 @@ const PostList = withStyles(styles)(({ classes, ...props }) => (
             sortable={false}
           />
           <NumberField source="views" />
-          <ReferenceArrayField
-            label="Tags"
-            reference="tags"
-            source="tags"
-            cellClassName={classes.hiddenOnSmallScreens}
-            headerClassName={classes.hiddenOnSmallScreens}
-          >
-            <SingleFieldList>
-              <ChipField source="name" />
-            </SingleFieldList>
-          </ReferenceArrayField>
+
           <PostListActionToolbar>
             <EditButton />
             <ShowButton />
