@@ -24,12 +24,15 @@ import {
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 import PostTitle from './PostTitle';
 
+import {ProgressInput} from '../../../src'
+
 const PostEdit = props => (
   <Edit title={<PostTitle />} {...props}>
     <TabbedForm defaultValue={{ average_note: 0 }}>
       <FormTab label="post.form.summary">
         <DisabledInput source="id" />
         <TextInput source="title" validate={required()} />
+        <ProgressInput source="color"  picker="Sketch" label="Color"/>
         <LongTextInput source="teaser" validate={required()} />
         <CheckboxGroupInput
           source="notifications"

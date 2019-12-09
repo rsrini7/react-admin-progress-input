@@ -18,6 +18,8 @@ import {
   UrlField,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 
+import {ProgressField} from '../../../src'
+
 import PostTitle from './PostTitle';
 
 const PostShow = props => (
@@ -28,6 +30,7 @@ const PostShow = props => (
           <Tab label="post.form.summary">
             <TextField source="id" />
             <TextField source="title" />
+            <ProgressField source="color" />
             {controllerProps.record &&
               controllerProps.record.title ==
                 'Fusce massa lorem, pulvinar a posuere ut, accumsan ac nisi' && (

@@ -1,7 +1,7 @@
 {
-    "name": "simple",
+    "name": "react-admin-progress-input-demo",
     "private": true,
-    "version": "2.0.0-beta1",
+    "version": "0.0.1",
     "description": "",
     "main": "index.html",
     "scripts": {
