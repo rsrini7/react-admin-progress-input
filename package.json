@@ -1,10 +1,16 @@
 {
-  "name": "react-admin-color-input",
-  "version": "1.0.9",
-  "description": "<ColorInput> and <ColorField> components for react-admin. Forked from aor-color-input.",
+  "name": "react-admin-progress-input",
+  "version": "1.0.0",
+  "description": "<ProgressInput> and <ProgressField> components for react-admin. Forked from react-admin-color-input.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel ./src/ -d lib",
+    "demo": "npm run start --prefix ./demo",
+    "nm-clean": "rimraf node_modules/ && rimraf demo/node_modules/",
+    "demo-clean-install": "npm run nm-clean && npm run demo-install",
+    "demo-install": "yarn install --cwd ./demo && yarn install && npm run install:peers",
+    "install:peers": "yarn add -P $(jq -r '.peerDependencies | to_entries | map(\"\\(.key)@\\(.value | tostring)\") | join(\" \")' package.json)",
+    "prettier-js": "prettier --write '{src,demo}/**/*.js'"
   },
   "files": [
     "LICENSE",
@@ -14,40 +20,48 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vascofg/react-admin-color-input.git"
+    "url": "git+https://github.com/rsrini7/react-admin-progress-input.git"
   },
   "keywords": [
     "reactjs",
     "rest",
     "react",
     "color",
-    "picker",
+    "progress",
     "html"
   ],
-  "author": "Vasco Gonçalves",
+  "author": "Srinivasan Ragothaman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vascofg/react-admin-color-input/issues"
+    "url": "https://github.com/rsrini7/react-admin-progress-input/issues"
   },
-  "homepage": "https://github.com/vascofg/react-admin-color-input#readme",
+  "homepage": "https://github.com/rsrini7/react-admin-progress-input#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0"
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.16.0",
+    "hard-source-webpack-plugin": "^0.11.1",
+    "prettier": "^1.13.7"
   },
   "peerDependencies": {
-    "ra-core": "^2.0.2",
-    "react": "^16.3.0",
-    "prop-types": "^15.6.0"
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.4.1",
+    "react-admin": "^2.1.1",
+    "react-dom": "^16.4.1"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
     "inflection": "^1.12.0",
     "lodash.get": "^4.4.2",
     "react-color": "^2.14.1",
-    "@material-ui/core": "^1.0.0",
     "recompose": "^0.27.1"
   }
 }

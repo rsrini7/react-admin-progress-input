@@ -1,4 +1,4 @@
-# `<ColorInput> and <ColorField>`
+# `<ProgressInput> and <ProgressField>`
 
 A color picker for [react-admin](https://github.com/marmelab/react-admin) using [React Color](http://casesandberg.github.io/react-color/), a collection of color pickers.
 

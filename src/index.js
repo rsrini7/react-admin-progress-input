@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import inflection from 'inflection';
 import { addField, FieldTitle } from 'ra-core';
 import TextField from '@material-ui/core/TextField';
 import * as ReactColor from 'react-color';
 import get from 'lodash.get';
 import pure from 'recompose/pure';
 
-require('./ColorInput.css');
+require('./ProgressInput.css');
 
-const ColorFieldComponent = ({ source, record = {}, className }) =>
+const ProgressFieldComponent = ({ source, record = {}, className }) =>
   (
     <div style={{ display: 'flex' }}>
       <div style={{
@@ -23,7 +22,7 @@ const ColorFieldComponent = ({ source, record = {}, className }) =>
     </div>
   );
 
-ColorFieldComponent.propTypes = {
+ProgressFieldComponent.propTypes = {
   addLabel: PropTypes.bool,
   className: PropTypes.string,
   elStyle: PropTypes.object,
@@ -32,13 +31,13 @@ ColorFieldComponent.propTypes = {
   source: PropTypes.string.isRequired,
 };
 
-const PureTextField = pure(ColorFieldComponent);
+const PureTextField = pure(ProgressFieldComponent);
 
 PureTextField.defaultProps = {
   addLabel: true,
 };
 
-class ColorInputComponent extends React.Component {
+class ProgressInputComponent extends React.Component {
   state = {
     show: false
   };
@@ -91,9 +90,9 @@ class ColorInputComponent extends React.Component {
         />
         {
           this.state.show?
-            <div className="ColorInput-popup">
+            <div className="ProgressInput-popup">
               <div
-                className="ColorInput-cover"
+                className="ProgressInput-cover"
                 onClick={this.handleClose}
               />
               <Picker
@@ -109,7 +108,7 @@ class ColorInputComponent extends React.Component {
   }
 };
 
-ColorInputComponent.propTypes = {
+ProgressInputComponent.propTypes = {
   label: PropTypes.string,
   options: PropTypes.object,
   source: PropTypes.string,
@@ -125,12 +124,12 @@ ColorInputComponent.propTypes = {
     new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`.`)
 };
 
-ColorInputComponent.defaultProps = {
+ProgressInputComponent.defaultProps = {
   picker: 'Chrome',
   options: {
     disableAlpha: true
   },
 };
 
-export const ColorField = PureTextField;
-export const ColorInput = addField(ColorInputComponent);
+export const ProgressField = PureTextField;
+export const ProgressInput = addField(ProgressInputComponent);
